@@ -13,6 +13,7 @@ import pdfplumber
 import spacy
 import re
 import pandas as pd
+import pyresumeparser
 
 ##----------------------------------------------------------------
 ## 1. Create list of files from Data directory
@@ -57,7 +58,7 @@ print(parsed_text_list['Resume-Sample-1-Software-Engineer.pdf'])
 df = pd.DataFrame(columns=[
     "filename",
     "extracted_text",
-    
+
     "Name",
     "Email",
     "Phone",
@@ -92,3 +93,9 @@ for ent in doc.ents:
 # Tokenization example
 for token in doc:
     print(token.text, token.pos_, token.dep_)
+
+### TESTING - works?? surprisingly
+
+pdf_file = list(parsed_text_list.values())[1]
+parsed_resume = pyresumeparser.parse_resume(file_list[0])
+print(parsed_resume)
